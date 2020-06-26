@@ -18,8 +18,7 @@ const server = http.createServer((request, response) => {
     let requestedURL = url.toString();
     try {
         if (url.match(/reddit.+/g) != null) {
-            let wwwMatches = url.match(/reddit.+/g)[0].toString();
-            requestedURL = "https://www." + wwwMatches;
+            requestedURL = "https://www." + url.match(/reddit.+/g)[0].toString();
         }
     }catch (e) {
         console.log("Invalid link")
