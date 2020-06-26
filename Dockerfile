@@ -1,7 +1,7 @@
-FROM node:12.16.2-alpine3.11
+FROM node:alpine
 
 COPY . /sarmirim-backend
 WORKDIR /sarmirim-backend
-RUN npm install
+RUN npm init --yes && npm install 
 
 ENTRYPOINT npm run server
