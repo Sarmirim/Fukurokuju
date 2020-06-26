@@ -13,16 +13,12 @@ const port = 8085;
 const server = http.createServer((request, response) => {
     response.setHeader('Access-Control-Allow-Origin', '*');
     const { headers, method, url } = request;
-    let a = request.headers;
-    console.log(request.headers);
+    console.log(headers);
+    logger.info(`Headers: ${JSON.stringify(headers)}`);
     let requestedURL = url.toString();
     try {
-        if(url.match(/\bwww.+/i)!=null) {
-            let wwwMatches = url.match(/\bwww.+/i)[0].toString();
-            requestedURL = "https://" + wwwMatches;
-        }
-        if (url.match(/\breddit.+/i) != null) {
-            let wwwMatches = url.match(/\breddit.+/i)[0].toString();
+        if (url.match(/reddit.+/g) != null) {
+            let wwwMatches = url.match(/reddit.+/g)[0].toString();
             requestedURL = "https://www." + wwwMatches;
         }
     }catch (e) {
