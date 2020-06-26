@@ -1,6 +1,6 @@
 import {default as http} from 'http'
-import {default as parserModule} from './parser.js'
-import logger from './logger.js'
+import {Parser} from './resources/index.js'
+import Logger from './resources/logger.js'
 
 let arrayData = [];
 
@@ -14,7 +14,7 @@ const server = http.createServer((request, response) => {
     response.setHeader('Access-Control-Allow-Origin', '*');
     const { headers, method, url } = request;
     console.log(headers);
-    logger.info(`Headers: ${JSON.stringify(headers)}`);
+    Logger.info(`Headers: ${JSON.stringify(headers)}`);
     let requestedURL = url.toString();
     try {
         if (url.match(/reddit.+/g) != null) {
@@ -24,7 +24,7 @@ const server = http.createServer((request, response) => {
         console.log("Invalid link")
         console.log(e)
     }
-    logger.info(`URL: ${requestedURL}`);
+    Logger.info(`URL: ${requestedURL}`);
     let body = [];
     request.on('error', (err) => {
         console.error(err);
@@ -34,7 +34,7 @@ const server = http.createServer((request, response) => {
         body = Buffer.concat(body).toString();
     });
 
-    parserModule(requestedURL).then((tableArray)=>{
+    Parser(requestedURL).then((tableArray)=>{
         response.statusCode = 200;
         response.setHeader('Content-Type', 'application/json');
         response.setHeader('X-Powered-By', 'Riftach');
@@ -48,7 +48,7 @@ const server = http.createServer((request, response) => {
 // const port = 8080;
 // console.log(`Server running at http://${hostname}:${port}/`);
 console.log(`Server running ...... ${port}`);
-logger.info('Server running ......');
+Logger.info('Server running ......');
 ////////////////////////Promise
 let afterLink = "/r/all.json?limit=5&raw_json=1"
 let jsonData;
