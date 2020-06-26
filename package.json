@@ -19,11 +19,11 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sarmirim/REDDIT.git"
+    "url": "git+https://github.com/Sarmirim/Fukurokuju.git"
   },
   "bugs": {
-    "url": "https://github.com/Sarmirim/REDDIT/issues"
+    "url": "https://github.com/Sarmirim/Fukurokuju/issues"
   },
-  "homepage": "https://github.com/Sarmirim/REDDIT#readme",
+  "homepage": "https://github.com/Sarmirim/Fukurokuju#readme",
   "description": ""
 }
