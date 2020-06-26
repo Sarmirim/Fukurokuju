@@ -1,37 +1,23 @@
-function answer(objectWithData){
-    let retAnswer = new String();
-    console.log(objectWithData)
-    for (let [key, value] of Object.entries(objectWithData)) {
-        retAnswer= retAnswer+`${key}: ${value}`;
-    }
-    let fin = JSON.stringify(retAnswer);
-    return fin;
-}
-
 export default async function dataParser(redditLink, jsonData) {
     let arr = [];
     try {
         let parsed
-        let a = redditLink.search(`/comments/`);
-        if(a != -1){
-            parsed = await JSON.parse(jsonData)[0].data;
-        }else {
-            parsed = await JSON.parse(jsonData).data;
-        }
+        let post = redditLink.search(`/comments/`);
+        parsed = (post != -1 ? await JSON.parse(jsonData)[0].data : await JSON.parse(jsonData).data)
         for(let i=0; i<parsed.children.length; i++){
             let children = parsed.children[i].data;
-            // let subreddit = children.subreddit;
-            // let author = children.author;
-            // let ups = children.ups;
+            let subreddit = children.subreddit;
+            let author = children.author;
+            let ups = children.ups;
             let title = children.title;
-            // let timeUTC = new Date(children.created_utc*1000).toISOString().slice(-13, -5);
+            let timeUTC = new Date(children.created_utc*1000).toISOString().slice(-13, -5);
             let gif = false;
             let objectData = {
                 title,
-                // author,
-                // subreddit,
-                // ups,
-                // timeUTC
+                author,
+                subreddit,
+                ups,
+                timeUTC
             }
             if(children.url){
                 let url = children.url;

@@ -5,7 +5,6 @@ const { combine, timestamp, label, prettyPrint } = format;
 
 const logger = createLogger({
     level: 'info',
-
     format: combine(
         timestamp({
             format: 'YYYY-MM-DD HH:mm:ss'
@@ -16,7 +15,7 @@ const logger = createLogger({
     ),
     defaultMeta: { service: 'reddit' },
     transports: [
-        new transports.File({ filename: 'error.log', level: 'error' }),
+        // new transports.File({ filename: 'error.log', level: 'error' }),
         new transports.File({ filename: 'combined.log' })
     ]
 });

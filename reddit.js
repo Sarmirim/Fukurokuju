@@ -15,14 +15,13 @@ const server = http.createServer((request, response) => {
     const { headers, method, url } = request;
     console.log(headers);
     Logger.info(`Headers: ${JSON.stringify(headers)}`);
-    let requestedURL = url.toString();
+    let requestedURL = url;
     try {
         if (url.match(/reddit.+/g) != null) {
             requestedURL = "https://www." + url.match(/reddit.+/g)[0].toString();
         }
     }catch (e) {
-        console.log("Invalid link")
-        console.log(e)
+        console.log("Invalid link" + e)
     }
     Logger.info(`URL: ${requestedURL}`);
     let body = [];
@@ -33,7 +32,6 @@ const server = http.createServer((request, response) => {
     }).on('end', () => {
         body = Buffer.concat(body).toString();
     });
-
     Parser(requestedURL).then((tableArray)=>{
         response.statusCode = 200;
         response.setHeader('Content-Type', 'application/json');
@@ -44,14 +42,5 @@ const server = http.createServer((request, response) => {
     });
 }).listen(port);
 
-// const hostname = '127.0.0.1';
-// const port = 8080;
-// console.log(`Server running at http://${hostname}:${port}/`);
 console.log(`Server running ...... ${port}`);
 Logger.info(`Server running ...... ${port}`);
-////////////////////////Promise
-let afterLink = "/r/all.json?limit=5&raw_json=1"
-let jsonData;
-
-
-
