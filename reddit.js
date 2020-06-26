@@ -48,7 +48,7 @@ const server = http.createServer((request, response) => {
 // const port = 8080;
 // console.log(`Server running at http://${hostname}:${port}/`);
 console.log(`Server running ...... ${port}`);
-Logger.info('Server running ......');
+Logger.info(`Server running ...... ${port}`);
 ////////////////////////Promise
 let afterLink = "/r/all.json?limit=5&raw_json=1"
 let jsonData;
