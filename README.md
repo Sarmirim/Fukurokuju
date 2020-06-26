@@ -1,12 +1,15 @@
 # Reddit Media server
 
 Fukurokuju is a [Node-Express](https://expressjs.com) parse server created with [@Snowb1ind](https://github.com/Snowb1ind) for dealing with big reddit api json.
+
 For now works only with subreddits and posts.
 
 ## Comparsion
 
-* `https://www.reddit.com/.json?limit=25`   ~ 240k-250k symbols
-* Fukurokuju *(limit=25)*               ~ 7k symbols (default settings)
+|Browser                                     |Symbols     |Size    |
+|:------------------------------------------|------------|--------|
+| `https://www.reddit.com/.json?limit=25`   |  240-250 k | 230 KB |
+| `Fukurokuju (limit=25)`                   |    8-9 k   | 8-9 KB |
 
 ## Installation
 
@@ -47,8 +50,14 @@ port = 8085
 reddit_link = https://www.reddit.com/r/all/.json?limit=25
 ```
 
-You can use Fukutokujo with any links to subreddits or posts:
+# Example
 
-**Subreddit:** `http://localhost:8085/https://www.reddit.com/r/all.json?limit=25`
+You can use Fukurokujo with any links to subreddits or posts:
 
-**Post:** `http://localhost:8085/https://www.reddit.com/comments/cjlngm`
+**Subreddit 1:** `http://localhost:8085/https://www.reddit.com/r/all.json?limit=25`
+
+**Subreddit 2:** `http://localhost:8085/reddit.com/r/popular`
+
+**Post 1:** `http://localhost:8085/https://www.reddit.com/comments/cjlngm`
+
+**Post 2:** `http://localhost:8085/reddit.com/r/gaming/comments/ccr8c8/take_your_time_you_got_this/`
