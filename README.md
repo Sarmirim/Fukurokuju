@@ -1,42 +1,54 @@
 # Reddit Media server
 
-Fukurokuju is a Node-Express parse server for dealing with big reddit-json api.
+Fukurokuju is a [Node-Express](https://expressjs.com) parse server created with [@Snowb1ind](https://github.com/Snowb1ind) for dealing with big reddit api json.
+For now works only with subreddits and posts.
 
-Today works with subreddits and posts 
+## Comparsion
 
-# EXAMPLE
+* `https://www.reddit.com/.json?limit=25`   ~ 240k-250k symbols
+* Fukurokuju *(limit=25)*               ~ 7k symbols (default settings)
 
-    https://www.reddit.com/.json?limit=25   ~~ 240k-250k symbols
-
-    Fukurokuju with limit=25                ~~ 7k symbols (initial settings)
-
-# Installation
+## Installation
 
 ```bash
-git clone https://github.com/Sarmirim/Fukurokuju.git
-cd ./Fukurokuju
+git clone https://github.com/Sarmirim/Fukurokuju.git && cd ./Fukurokuju
 npm init
 ```
 
-# Usage
+or
 
-## start server
-```javascript
-npm run server  //node reddit.js
-npm run dev     //nodemon reddit.js
+```bash
+docker build --label latest --tag fukurokujo .
+docker run -d -p 8085:8085 --name fukurokujo fukurokujo
 ```
-## use server
-```html
-initial settings:
+
+## Usage
+
+```bash
+npm run server  // node reddit.js
+```
+
+or
+
+```bash
+npm run dev     // nodemon reddit.js
+```
+
+---
+
+`http://localhost:8085/`
+
+## Settings
+
+**Default:**
+
+```ini
 port = 8085
 reddit_link = https://www.reddit.com/r/all/.json?limit=25
-
-http://localhost:port/reddit_link
-
-
-subreddit example:
-http://localhost:8085/https://www.reddit.com/r/all.json?limit=25 
-
-post example:
-http://localhost:8085/https://www.reddit.com/comments/cjlngm
 ```
+
+You can use Fukutokujo with any links to subreddits or posts:
+
+**Subreddit:** `http://localhost:8085/https://www.reddit.com/r/all.json?limit=25`
+
+**Post:** `http://localhost:8085/https://www.reddit.com/comments/cjlngm`
