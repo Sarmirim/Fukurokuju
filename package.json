@@ -1,0 +1,29 @@
+{
+  "name": "reddit",
+  "version": "1.0.0",
+  "main": "reddit.js",
+  "scripts": {
+    "dev": "nodemon ./reddit.js",
+    "server": "node reddit.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Sarmirim",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "nodemon": "^2.0.4",
+    "request": "^2.88.2",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sarmirim/REDDIT.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sarmirim/REDDIT/issues"
+  },
+  "homepage": "https://github.com/Sarmirim/REDDIT#readme",
+  "description": ""
+}
