@@ -1,11 +1,13 @@
-const { createLogger, format, transports } = require('winston');
+import winston from 'winston'
+
+const { format, transports, createLogger} = winston;
 const { combine, timestamp, label, prettyPrint } = format;
 
 const logger = createLogger({
     level: 'info',
 
-    format: format.combine(
-        format.timestamp({
+    format: combine(
+        timestamp({
             format: 'YYYY-MM-DD HH:mm:ss'
         }),
         format.errors({ stack: true }),
@@ -19,6 +21,4 @@ const logger = createLogger({
     ]
 });
 
-module.exports = {
-    logger
-};
+export default logger

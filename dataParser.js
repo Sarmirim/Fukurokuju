@@ -1,7 +1,3 @@
-module.exports = {
-    dataParser
-};
-
 function answer(objectWithData){
     let retAnswer = new String();
     console.log(objectWithData)
@@ -12,7 +8,7 @@ function answer(objectWithData){
     return fin;
 }
 
-async function dataParser(redditLink, jsonData) {
+export default async function dataParser(redditLink, jsonData) {
     let arr = [];
     try {
         let parsed

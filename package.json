@@ -2,6 +2,7 @@
   "name": "reddit",
   "version": "1.0.0",
   "main": "reddit.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon ./reddit.js",
     "server": "node reddit.js",

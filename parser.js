@@ -1,8 +1,7 @@
-const parser = require('./parser');
-const request = require('request');
-// import {Axios} from 'axios';
+import request from 'request'
+import {default as dataFromParser} from './dataParser.js'
+
 const link = '';
-const dataFromParser = require('./dataParser');
 const key = '.json?limit=5&raw_json=1';
 
 function parse(linkToParse){
@@ -18,7 +17,7 @@ function parse(linkToParse){
 let jsonData;
 let arrayData = [];
 
-async function f(redditLink){
+export default async function f(redditLink){
     console.log(redditLink);
 
     let arr = [];
@@ -28,14 +27,11 @@ async function f(redditLink){
         console.err(err);
         return "ERROR";
     });
-    arr = dataFromParser.dataParser(redditLink, jsonData);
+    arr = dataFromParser(redditLink, jsonData);
 
     return arr;
 }
 
-module.exports = {
-    parse, f
-};
 /////Example
 /*f().then((massiv)=>{
         arrayData = massiv
