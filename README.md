@@ -50,7 +50,7 @@ port = 8085
 reddit_link = https://www.reddit.com/r/all/.json?limit=25
 ```
 
-# Example
+## Example
 
 You can use Fukurokujo with any links to subreddits or posts:
 
