@@ -15,7 +15,7 @@ For now works only with subreddits and posts.
 
 ```bash
 git clone https://github.com/Sarmirim/Fukurokuju.git && cd ./Fukurokuju
-npm init
+npm install
 ```
 
 or
