@@ -1,12 +1,19 @@
-# Reddit Media server
+# Fukurokuju
 
 Fukurokuju is a [Node-Express](https://expressjs.com) parse server created with [@Snowb1ind](https://github.com/Snowb1ind) for dealing with big reddit api json.
 
 For now works only with subreddits and posts.
 
-## Comparsion
+- [Fukurokuju](#fukurokuju)
+  - [Comparison](#comparison)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Settings](#settings)
+  - [Example](#example)
 
-|Browser                                     |Symbols     |Size    |
+## Comparison
+
+|Browser                                    |Symbols     |Size    |
 |:------------------------------------------|------------|--------|
 | `https://www.reddit.com/.json?limit=25`   |  240-250 k | 230 KB |
 | `Fukurokuju (limit=25)`                   |    8-9 k   | 8-9 KB |
