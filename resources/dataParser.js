@@ -17,7 +17,7 @@ export default async function dataParser(redditLink, jsonData) {
                 author,
                 subreddit,
                 ups,
-                timeUTC
+                timeUTC,
             }
             if(children.url){
                 let url = children.url;
@@ -29,6 +29,10 @@ export default async function dataParser(redditLink, jsonData) {
                 }else {
                     objectData.thumbnail = children.url;
                 }
+
+                try {objectData.source_width = preview.images[0].source.width} catch (e) {}
+                try {objectData.source_height = preview.images[0].source.height} catch (e) {}
+
                 try {if(preview.reddit_video_preview){objectData.media = preview.reddit_video_preview.fallback_url; gif = true}}catch (e) {}
                 try {if(children.is_video == true){objectData.media = mediaFlag.reddit_video.fallback_url; gif = true}}catch (e) {}
                 try {if(mediaFlag.reddit_video){objectData.media = mediaFlag.reddit_video.fallback_url; gif = true}}catch (e) {}
