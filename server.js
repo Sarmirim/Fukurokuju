@@ -22,12 +22,20 @@ const server = http.createServer((request, response) => {
 		request.on('data', (chunk) => {
 			body = (JSON.parse(chunk).url);
 		}).on('end', () => {
-			Parser(body).then((data)=>{
-				response.end(JSON.stringify(data));
-			}); 	
+			if (body == undefined) {
+				console.log("asd");
+				response.writeHead(404, {"Content-Type": "text/plain"});
+				response.write(`add to your GET body {"url":"link to reddit sub or post"}`);
+				response.end();
+			} 
+			else
+				Parser(body).then((data)=>{
+					response.end(JSON.stringify(data));
+				}); 	
 		});
 	}
 })
+
 server.listen(port);
 
 console.log(`Server running ...... ${port}`);
