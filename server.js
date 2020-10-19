@@ -2,45 +2,33 @@ import {default as http} from 'http'
 import {Parser} from './resources/index.js'
 import Logger from './resources/logger.js'
 
-let arrayData = [];
 
-//In case someone stumbles upon this in the future.. If you are running nginx in front of node.js you can also block favicon requests by adding this line:
-//
-// location = /favicon.ico { access_log off; log_not_found off; }
-
-const port = 8085;
+const port = process.env.PORT || 8085;
 
 const server = http.createServer((request, response) => {
-    response.setHeader('Access-Control-Allow-Origin', '*');
     const { headers, method, url } = request;
-    console.log(headers);
-    Logger.info(`Headers: ${JSON.stringify(headers)}`);
-    let requestedURL = url;
-    try {
-        if (url.match(/reddit.+/g) != null) {
-            requestedURL = "https://www." + url.match(/reddit.+/g)[0].toString();
-        }
-    }catch (e) {
-        console.log("Invalid link" + e)
-    }
-    Logger.info(`URL: ${requestedURL}`);
-    let body = [];
-    request.on('error', (err) => {
-        console.error(err);
-    }).on('data', (chunk) => {
-        body.push(chunk);
-    }).on('end', () => {
-        body = Buffer.concat(body).toString();
-    });
-    Parser(requestedURL).then((tableArray)=>{
-        response.statusCode = 200;
-        response.setHeader('Content-Type', 'application/json');
-        response.setHeader('X-Powered-By', 'Riftach');
-        arrayData = tableArray
-        let jsonArray = JSON.stringify(arrayData);
-        response.end(jsonArray);
-    });
-}).listen(port);
+	Logger.info(`Headers: ${JSON.stringify(headers)}`);
+	response.setHeader('Access-Control-Allow-Origin', '*');
+	response.statusCode = 200;
+	response.setHeader('Content-Type', 'application/json');
+
+    if (url=='/') {
+        response.setHeader('Content-Type', 'text/html');
+		response.end("Fukurokuju server");
+	}
+
+	if (method === 'GET' && url === '/api') {
+		let body = {};
+		request.on('data', (chunk) => {
+			body = (JSON.parse(chunk).url);
+		}).on('end', () => {
+			Parser(body).then((data)=>{
+				response.end(JSON.stringify(data));
+			}); 	
+		});
+	}
+})
+server.listen(port);
 
 console.log(`Server running ...... ${port}`);
 Logger.info(`Server running ...... ${port}`);
