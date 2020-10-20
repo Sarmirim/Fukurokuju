@@ -1,6 +1,6 @@
 # Fukurokuju
 
-Fukurokuju is a [Node-Express](https://expressjs.com) parse server created with [@Snowb1ind](https://github.com/Snowb1ind) for dealing with big reddit api json.
+Fukurokuju is a [Vanilla-Node](https://nodejs.org) parse server created with [@Snowb1ind](https://github.com/Snowb1ind) for dealing with big reddit api json.
 
 For now works only with subreddits and posts.
 
@@ -8,7 +8,6 @@ For now works only with subreddits and posts.
   - [Comparison](#comparison)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Settings](#settings)
   - [Example](#example)
 
 ## Comparison
@@ -35,33 +34,24 @@ docker run -d -p 8085:8085 --name fukurokujo fukurokujo
 ## Usage
 
 ```bash
-npm run server  // node reddit.js
+npm run server  // node server.js
 ```
 
 or
 
 ```bash
-npm run dev     // nodemon reddit.js
+npm run dev     // nodemon server.js
 ```
 
 ---
 
 `http://localhost:8085/`
 
-## Settings
-
-**Default:**
-
-```ini
-port = 8085
-reddit_link = https://www.reddit.com/r/all/.json?limit=25
-```
-
 ## Example
 
 You can use Fukurokujo with any links to subreddits or posts:
 
-**Subreddit 1:** `http://localhost:8085/https://www.reddit.com/r/all.json?limit=25`
+**Subreddit 1:** `http://localhost:8085/https://www.reddit.com/r/all`
 
 **Subreddit 2:** `http://localhost:8085/reddit.com/r/popular`
 
