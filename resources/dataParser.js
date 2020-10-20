@@ -1,53 +1,60 @@
 export default function dataParser(redditLink, jsonData) {
     let responseArray = [];
-    try {      
+    try {
         const postCheck = new Boolean(redditLink.search(`/comments/`) != -1); // postCheck -> bool (subreddit = false) (post = true)
         const parsedJSON = (postCheck == true ? JSON.parse(jsonData)[0].data : JSON.parse(jsonData).data)
         for(let i=0; i<parsedJSON.children.length; i++){
             const children = parsedJSON.children[i].data;
-            let { subreddit, author, ups, title, created_utc } = children
-
+            let { title, author, subreddit, ups, created_utc } = children
             created_utc = new Date(created_utc*1000).toISOString().slice(-13, -5);
             let gif = false;
-            let objectData = {
-                title,
-                author,
-                subreddit,
-                ups,
-                created_utc,
-            }
+            let postData = { title, author, subreddit, ups, created_utc, }
 
             // gif/video
+            let gifChecker = (source) => {
+                let answer
+                if (source.is_video){
+                    try {answer = source.media.reddit_video.fallback_url} catch (e) {}
+                }
+                else {
+                    try {answer = source.preview.reddit_video_preview.fallback_url} catch (e) {}
+                    try {answer = (source.url_overridden_by_dest.search(`.gif`) != -1 ? source.url : null)} catch (e) {}
+                    }
+                if (answer) gif = true
+                return answer
+            }
             if (children.crosspost_parent_list) {
-                const parent = children.crosspost_parent_list[0];              
-                try {objectData.media = parent.url_overridden_by_dest; gif = true}catch (e) {}
-                try {objectData.media = parent.media.reddit_video.fallback_url; gif = true}catch (e) {}    
-                try {objectData.media = parent.media.oembed.thumbnail_url; gif = true}catch (e) {}                         
-            } 
-            else {    
-                try {objectData.media = children.url_overridden_by_dest; gif = true}catch (e) {}
-                try {objectData.media = children.media.reddit_video.fallback_url;  gif = true}catch (e) {}
-                try {objectData.media = children.media.oembed.thumbnail_url; gif = true}catch (e) {}               
+                const answer = gifChecker(children.crosspost_parent_list[0])
+                if(answer){
+                    postData.media = answer
+                }
+            }
+            else {
+                const answer = gifChecker(children)
+                if(answer){
+                    postData.media = answer
+                }
             }
 
             // image
-            if(children.url){
-                const preview = children.preview;
-                objectData.url = children.url;
-                if(children.thumbnail.toString().length > 10) {
-                    objectData.thumbnail = children.thumbnail;
-                }else {
-                    objectData.thumbnail = children.url;
+            if (children.url){
+                postData.url = children.url;
+                if (children.thumbnail.toString().length > 10) {
+                    postData.thumbnail = children.thumbnail;
                 }
-                try {objectData.source_width = preview.images[0].source.width} catch (e) {}
-                try {objectData.source_height = preview.images[0].source.height} catch (e) {}
+                else {
+                    postData.thumbnail = children.url;
+                }
+                const preview = children.preview;
+                try {postData.source_width = preview.images[0].source.width} catch (e) {}
+                try {postData.source_height = preview.images[0].source.height} catch (e) {}
             }
-
-            objectData.gif = gif;
-            responseArray.push(objectData);
+            postData.gif = gif
+            responseArray.push(postData)
         }
-    } catch (error) {
-        console.log(error);
+    }
+    catch (error) {
+        console.log(error)
     }
     return responseArray
 }
