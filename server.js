@@ -31,7 +31,7 @@ const server = http.createServer((request, response) => {
 			else
 				Parser(body).then((data)=>{
 					response.end(JSON.stringify(data));
-				}); 	
+				});
 		});
 	}
 })
