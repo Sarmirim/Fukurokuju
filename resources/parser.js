@@ -7,7 +7,7 @@ function parse(link){
     return new Promise(function(resolve, reject){
         axios.get(link + key).then(res => {
             resolve(res.data)
-            reject(new Error('Error'))  
+            reject(new Error('Error'))
         })
     });
 }
