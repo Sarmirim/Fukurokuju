@@ -1,7 +1,7 @@
 FROM node:alpine
 
-COPY . /sarmirim-backend
-WORKDIR /sarmirim-backend
+COPY . /Fukurokuju
+WORKDIR /Fukurokuju
 RUN npm init --yes && npm install 
 
 ENTRYPOINT npm run server
