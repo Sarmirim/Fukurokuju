@@ -16,5 +16,5 @@ jobs:
       - name: Build and push Docker image to GHCR
         run: |
           echo ${{ secrets.GHCR_PAT }} | docker login ghcr.io -u sarmirim --password-stdin
-          docker build . --tag ghcr.io/Sarmirim/Fukurokuju:latest
-          docker push ghcr.io/Sarmirim/Fukurokuju:latest
+          docker build . --tag ghcr.io/sarmirim/fukurokuju:latest
+          docker push ghcr.io/sarmirim/fukurokuju:latest
