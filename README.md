@@ -27,8 +27,8 @@ npm install
 or
 
 ```bash
-docker build --label latest --tag fukurokujo .
-docker run -d -p 8085:8085 --name fukurokujo fukurokujo
+docker build --label latest --tag fukurokuju .
+docker run -d -p 8085:8085 --name fukurokuju fukurokuju
 ```
 
 ## Usage
@@ -49,7 +49,7 @@ npm run dev     // nodemon server.js
 
 ## Example
 
-You can use Fukurokujo with any links to subreddits or posts:
+You can use Fukurokuju with any links to subreddits or posts:
 
 **Subreddit 1:** `http://localhost:8085/https://www.reddit.com/r/all`
 
