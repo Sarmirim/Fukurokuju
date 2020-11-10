@@ -5,7 +5,7 @@ const key = '.json?raw_json=1';
 
 function parse(link){
     return new Promise(function(resolve, reject){
-        axios.get(link + key).then(res => {
+        axios.get(link.split('/?')[0] + key).then(res => {
             resolve(res.data)
             reject(new Error('Error'))
         })
