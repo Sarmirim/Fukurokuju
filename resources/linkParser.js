@@ -10,7 +10,8 @@ function parse(link){
             reject(new Error('Error'))
         }).catch(err=>{
             Logger.error(err)
-            // console.log(err);
+            console.log('\x1b[41m', err.message ,'\x1b[0m');
+            reject(err)
         })
     });
 }
