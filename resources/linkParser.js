@@ -12,7 +12,7 @@ function parse(link){
     });
 }
 
-export default async function Parser(link){
+export default async function LinkParser(link){
     const jsonData = await parse(link).then((data) => {
         return data;
     }).catch(function(err) {
