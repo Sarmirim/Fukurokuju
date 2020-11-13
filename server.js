@@ -1,6 +1,5 @@
 import {default as http} from 'http'
-import {Parser} from './resources/index.js'
-import Logger from './resources/logger.js'
+import {LinkParser, Logger} from './resources/index.js'
 
 const port = process.env.PORT || 8085;
 
@@ -17,7 +16,7 @@ const server = http.createServer((request, response) => {
 			body = (JSON.parse(chunk).url);
 		}).on('end', () => {
 			if (body != undefined) {
-				Parser(body).then((data)=>{
+				LinkParser(body).then((data)=>{
 					response.end(JSON.stringify(data));
 				});
 			} 
