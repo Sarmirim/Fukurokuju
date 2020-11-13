@@ -15,7 +15,7 @@ const server = http.createServer((request, response) => {
 		request.on('data', (chunk) => {
 			body = (JSON.parse(chunk).url);
 		}).on('end', () => {
-			if (body != undefined) {
+			if (body != undefined && body.length > 10) {
 				LinkParser(body).then((data)=>{
 					response.end(JSON.stringify(data));
 				});
