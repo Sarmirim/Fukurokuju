@@ -54,10 +54,7 @@ export default function dataParser(redditLink, jsonData) {
         }
     }
     catch (error) {
-        console.log("hi");
-        if (error.name != TypeError) {
-            console.log(error)
-        }  
+        console.log(error);
     }
     return responseArray
 }
