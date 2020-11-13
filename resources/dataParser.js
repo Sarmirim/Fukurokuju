@@ -1,7 +1,7 @@
 export default function dataParser(redditLink, jsonData) {
     let responseArray = [];
     try {
-        const postCheck = new Boolean(redditLink.search(`/comments/`) != -1); // postCheck -> bool (subreddit = false) (post = true)
+        const postCheck = new Boolean(redditLink.search(`/comments/`) != -1); // boolen to check if link is post or subreddit: postCheck = bool ? (subreddit = false) : (post = true)
         const parsedJSON = (postCheck == true ? JSON.parse(jsonData)[0].data : JSON.parse(jsonData).data)
         for(let i=0; i<parsedJSON.children.length; i++){
             const children = parsedJSON.children[i].data;
@@ -54,7 +54,10 @@ export default function dataParser(redditLink, jsonData) {
         }
     }
     catch (error) {
-        console.log(error)
+        console.log("hi");
+        if (error.name != TypeError) {
+            console.log(error)
+        }  
     }
     return responseArray
 }
