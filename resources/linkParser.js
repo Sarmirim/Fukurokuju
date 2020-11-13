@@ -1,4 +1,4 @@
-import {default as dataFromParser} from './dataParser.js'
+import {DataParser} from './index.js'
 import axios from'axios'
 
 const key = '.json?raw_json=1';
@@ -19,5 +19,5 @@ export default async function LinkParser(link){
         console.error(err);
         return "ERROR";
     }); 
-    return dataFromParser(link, JSON.stringify(jsonData));
+    return DataParser(link, JSON.stringify(jsonData));
 }
